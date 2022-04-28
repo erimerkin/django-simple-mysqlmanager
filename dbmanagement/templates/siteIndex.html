@@ -1,0 +1,38 @@
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Login</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+	<style>
+		#outer {
+			width: 100%;
+			text-align: center;
+		}
+
+		.inner {
+			display: inline-block;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div style="background-color:lavender; !important" class="jumbotron text-center bg-primary">
+			<h1> Welcome to Simple Boun Registration.</h1>
+			<p>
+				Please choose your role to go to login step.
+			</p>
+		</div>
+	</div>
+	<div id="outer">
+		<div class="inner"><button type="submit" class="msgBtn" onClick="location.href = '/dbmanagement/instructor'">Instructor</button></div>
+		<div class="inner"><button type="submit" class="msgBtn2" onClick="location.href = '/dbmanagement/student'">Student</button></div>
+		<div class="inner"><button type="submit" class="msgBtn3" onClick="location.href = '/dbmanagement/manager'">Manager</button></div>
+	</div>
+</body>
+
+</html>
