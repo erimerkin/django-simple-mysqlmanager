@@ -90,6 +90,12 @@ def login(req, user_type):
     if result: #If a result is retrieved
         req.session["username"]=username #Record username into the current session
         req.session["type"]= user_type
-        return HttpResponseRedirect('../userHome') #Redirect user to home page
+        return HttpResponseRedirect(f'../{user_type}') #Redirect user to home page
     else:
         return HttpResponseRedirect('../loginIndex?fail=true')
+
+def logout(req):
+    if req.session:
+        req.session.flush()
+
+    return HttpResponseRedirect('/dbmanagement/') #Redirect user to home page
