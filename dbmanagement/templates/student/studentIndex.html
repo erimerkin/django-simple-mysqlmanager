@@ -1,0 +1,24 @@
+{% extends "student/studentBase.html" %}
+
+{% block page_header %}
+<div class="p-5 text-center bg-light">
+	<h1 class="mb-3">SimpleBoun Student Interface</h1>
+	<h5 class="mb-5">Please, choose an action to continue.</h5>
+	<div class="container mb-3">
+		<div class="btn-group" role="group" aria-label="Basic outlined example">
+			<button type="button" class="btn btn-outline-dark"
+				onClick="location.href = '/dbmanagement/student/listAllCourses'">List All Active Courses</button>
+			<button type="button" class="btn btn-outline-dark"
+				onClick="location.href = '/dbmanagement/student/listTakenCourses'">List All Taken Courses</button>
+			<button type="button" class="btn btn-outline-dark"
+				onClick="location.href = '/dbmanagement/student/searchCourses'">Search Courses</button>
+		</div>
+	</div>
+	<div class="container mb-3">
+		<div class="btn-group" role="group" aria-label="Basic outlined example">
+			<button type="button" class="btn btn-outline-dark"
+				onClick="location.href = '/dbmanagement/student/addCourse'">Add Course</button>
+		</div>
+	</div>
+</div>
+{% endblock %}

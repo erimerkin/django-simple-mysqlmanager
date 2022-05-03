@@ -1,0 +1,18 @@
+{% extends "student/studentBase.html" %}
+{% load crispy_forms_tags %}
+
+{% block alert_fail %} <p> Invalid password or username. </p> {% endblock %}
+
+
+{% block form %}{% if add_form %}
+<div class="d-flex justify-content-center flex-nowrap">
+    <div class="col-md-8 mx-auto">
+        <form class="form-group" method="POST" novalidate action= "{% url 'studentLogin' %}">
+            {{add_form|crispy}}
+            {% csrf_token %}
+            <div class="col-md-12 text-center">
+                <button type="submit" class="btn btn-outline-success"> Login </button> 
+        </form>
+    </div>
+</div>
+{% endif %}{% endblock %}

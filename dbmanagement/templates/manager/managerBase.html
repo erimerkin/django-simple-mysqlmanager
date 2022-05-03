@@ -1,0 +1,140 @@
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>{% block title %}DB Manager Interface{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{%url 'managerHome' %}">DBManager Interface</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{%url 'managerHome' %}">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Student
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="{% url 'page_listStudents' %}">List Students</a></li>
+                            <li><a class="dropdown-item" href="{% url 'page_addStudent' %}">Add Student</a></li>
+                            <li><a class="dropdown-item" href="{% url 'page_removeStudent' %}">Remove Student</a></li>
+                            <li><a class="dropdown-item" href="{% url 'page_viewGrades' %}">View Grades of Student</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Instructor
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="{% url 'page_listInstructors' %}">List Instructors</a>
+                            </li>
+                            <li><a class="dropdown-item" href="{% url 'page_addInstructor' %}">Add Instructor</a></li>
+                            <li><a class="dropdown-item" href="{% url 'page_updateTitle' %}">Update Title of
+                                    Instructor</a></li>
+                            <li><a class="dropdown-item" href="{% url 'page_viewCourses' %}">View Courses of
+                                    Instructor</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="{%url 'page_courseAverage' %}">View Average of Course</a>
+                    </li>
+                </ul>
+                <span class="nav-item">
+                    <a class="nav-link" href="{%url 'logout' %}">Logout</a>
+                </span>
+            </div>
+        </div>
+    </nav>
+    <div class="wrapper">
+        {% block page_header %}
+        <div class="p-5 text-center bg-light">
+            <h1 class="mb-5">DBManager Interface</h1>
+            <h5 class="mb-3"> {{ info_text }}</h5>
+        </div>
+        {% endblock %}
+        <div class="container-sm">
+            {% if action_fail %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <h4 class="alert-heading">Action Failed</h4>
+                {% block alert_fail %}
+                <p> Test </p>
+                {% endblock %}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endif %}
+            {% if action_success %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <h4 class="alert-heading">Success</h4>
+                {% block alert_success %}
+                <p> Test</p>
+                {% endblock %}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endif %}
+        </div>
+        {% block form %}{% if add_form %}
+        <div class="d-flex justify-content-center flex-nowrap">
+            <div class="col-md-8 mx-auto">
+                <form class="form-group" method="POST" novalidate action="{% url 'removeStudent' %}">
+                    {{add_form|crispy}}
+                    {% csrf_token %}
+                    <div class="col-md-12 text-center">
+                        <button type="submit" class="btn btn-outline-success"> Action </button>
+                </form>
+            </div>
+        </div>
+        {% endif %}{% endblock %}
+    </div>
+
+    {% if results %}
+    <div class="container">
+        {% block table_title %} {% endblock %}
+        <table class="mt-3 table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col"> # </th>
+                    {% for column in headers %}
+                    <th scope="col"> {{ column }} </th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in results %}
+                <tr>
+
+                    <th scope="row">{{ forloop.counter }}</th>
+                    {% for value in row %}
+                    <td>
+                        {{value}}
+                    </td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
+    {% endif %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+{% extends "manager/managerBase.html" %}
+
+{% block page_header %}
+<div class="p-5 text-center bg-light">
+	<h1 class="mb-3">DBManager Interface</h1>
+	<h5 class="mb-5">Please, choose an action to continue.</h5>
+	<div class="container mb-3">
+		<div class="btn-group" role="group" aria-label="Basic outlined example">
+			<button type="button" class="btn btn-outline-dark"
+				onClick="location.href = '/dbmanagement/manager/addStudent'">Add Student</button>
+			<button type="button" class="btn btn-outline-dark"
+				onClick="location.href = '/dbmanagement/manager/listStudents'">List Students</button>
+			<button type="button" class="btn btn-outline-dark"
+				onClick="location.href = '/dbmanagement/manager/removeStudent'">Remove Student</button>
+			<button type="button" class="btn btn-outline-dark"
+				onClick="location.href = '/dbmanagement/manager/viewGrades'">View Grades of Student</button>
+		</div>
+	</div>
+	<div class="container mb-3">
+		<div class="btn-group" role="group" aria-label="Basic outlined example">
+			<button type="button" class="btn btn-outline-dark"
+				onClick="location.href = '/dbmanagement/manager/addInstructor'">Add Instructor</button>
+			<button type="button" class="btn btn-outline-dark"
+				onClick="location.href = '/dbmanagement/manager/listInstructors'">List Instructors</button>
+			<button type="button" class="btn btn-outline-dark"
+				onClick="location.href = '/dbmanagement/manager/updateTitle'">Update Instructor Title</button>
+			<button type="button" class="btn btn-outline-dark"
+				onClick="location.href = '/dbmanagement/manager/viewCourses'">View Courses of Instructor</button>
+		</div>
+	</div>
+	<div class="container">
+		<button type="button" class="btn btn-outline-dark"
+			onClick="location.href = '/dbmanagement/manager/courseAverage'">View Grade Average For Course</button>
+	</div>
+</div>
+{% endblock %}

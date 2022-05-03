@@ -1,0 +1,35 @@
+{% extends "instructor/instructorBase.html" %}
+
+{% block page_header %}
+<div class="p-5 text-center bg-light">
+	<h1 class="mb-3">SimpleBoun Instructor Interface</h1>
+	<h5 class="mb-5">Please, choose an action to continue.</h5>
+	<div class="container mb-3">
+		<div class="btn-group" role="group" aria-label="Basic outlined example">
+			<button type="button" class="btn btn-outline-dark"
+				onClick="location.href = '/dbmanagement/instructor/addCourse'">Add New Course</button>
+			<button type="button" class="btn btn-outline-dark"
+				onClick="location.href = '/dbmanagement/instructor/addPrerequisite'">Add Prerequisite to Course</button>
+			<button type="button" class="btn btn-outline-dark"
+				onClick="location.href = '/dbmanagement/instructor/updateCourseName'">Update Course Name</button>
+			<button type="button" class="btn btn-outline-dark"
+				onClick="location.href = '/dbmanagement/instructor/viewCoursesGiven'">View Given Courses</button>
+		</div>
+	</div>
+	<div class="container mb-3">
+		<div class="btn-group" role="group" aria-label="Basic outlined example">
+			<button type="button" class="btn btn-outline-dark"
+				onClick="location.href = '/dbmanagement/instructor/listStudentsForCourse'">List Students Taking A
+				Course</button>
+			<button type="button" class="btn btn-outline-dark"
+				onClick="location.href = '/dbmanagement/instructor/giveGrade'">Grade Student</button>
+		</div>
+	</div>
+	<div class="container mb-3">
+		<div class="btn-group" role="group" aria-label="Basic outlined example">
+			<button type="button" class="btn btn-outline-dark"
+				onClick="location.href = '/dbmanagement/instructor/listAllClassrooms'">List Available Classrooms</button>
+		</div>
+	</div>
+</div>
+{% endblock %}

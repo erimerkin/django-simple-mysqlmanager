@@ -1,0 +1,19 @@
+{% extends "manager/managerBase.html" %}
+{% load crispy_forms_tags %}
+
+{% block alert_fail %} <p> Couldn't find the course with id {{action_fail}}.</p> {% endblock %}
+
+{% block form %}{% if add_form %}
+<div class="d-flex justify-content-center flex-nowrap">
+    <div class="col-md-8 mx-auto">
+        <form class="form-group" method="POST" novalidate action= "{% url 'courseAverage' %}">
+            {{add_form|crispy}}
+            {% csrf_token %}
+            <div class="col-md-12 text-center">
+                <button type="submit" class="mb-3 btn btn-outline-success">View Grades</button> 
+        </form>
+    </div>
+</div>
+{% endif %}{% endblock %}
+
+{% block table_title %} <h5> Average Grade of Course with id {{username}}</h5> {% endblock %}

@@ -21,9 +21,15 @@
 			<div class="d-flex justify-content-around" style="margin-top: 20px">           
 				{% if action_fail%}
 					<div class="alert alert-danger" role="alert">
-						<h4 class="alert-heading">Login Failed</h4>
-						<p>Your username or password is not correct</p>
+						<h4 class="alert-heading">Action Failed</h4>
+						<p> {action_fail} </p>
 					</div>
+				{% endif %}
+				{% if action_success %}
+				<div class="alert alert-success" role="alert">
+					<h4 class="alert-heading">Success</h4>
+					<p> {action_success} </p>
+				  </div>				  
 				{% endif %}
 				<form class="form-group" method="POST" novalidate action="{% url 'instructorLogin' %}">
 					{{login_form|crispy}}

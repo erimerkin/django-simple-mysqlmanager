@@ -1,0 +1,31 @@
+{% extends "student/studentBase.html" %}
+{% load crispy_forms_tags %}
+
+{% block alert_fail %} <p> Errorrrrr {{action_fail}}.</p> {% endblock %}
+
+{% block form %}{% if add_form %}
+<div class="d-flex justify-content-center flex-nowrap">
+        <p>
+            <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                Filter Courses
+            </button>
+        </p>
+</div>
+<div class="collapse" id="collapseExample">
+    <div class="card card-body">
+        <div class="d-flex justify-content-center flex-nowrap">
+            <div class="col-md-8 mx-auto">
+                <form class="form-group" method="POST" novalidate action="{% url 'filterCourses' %}">
+                    {{add_form|crispy}}
+                    {% csrf_token %}
+                    <div class="col-md-12 text-center">
+                        <button type="submit" class="mb-3 btn btn-outline-success">Filter</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}{% endblock %}
+
+{% block table_title %} {% if dept %} <h5> Filtered for Department "{{dept}}", Campus "{{campus}}", Credits Between "{{min}}-{{max}}":</h5>  {% endif %}{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "manager/managerBase.html" %}
+
+{% block page_header %}
+<div class="p-5 text-center bg-light">
+    <h1 class="mb-5">DBManager Interface</h1>
+    <h5 class="mb-5">Lists all Instructors registered in the system</h4>
+    <a class="btn btn-primary" href="{% url 'page_listStudents' %}" role="button">Refresh Table</a>
+  </div>
+{% endblock %}
