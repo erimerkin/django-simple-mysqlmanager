@@ -2,3 +2,6 @@ Django==4.0.4
 mysql_connector_python
 mysqlclient
 django-crispy-forms
+django-environ
+environ
+crispy-bootstrap5
