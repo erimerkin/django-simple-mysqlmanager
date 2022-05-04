@@ -86,12 +86,13 @@ def action_addPrerequisite(req):
     except Exception as e:
         return HttpResponseRedirect(f'../instructor/addPrerequisite?fail={str(e)}')
 
-
+# Function to update course name with given course_id, new name. It also checks if instructor is the owner of the course
 def action_updateCourseName(req):
     course_id=req.POST["course_id"]
     updated_name=req.POST["course_name"]
     instr_username=req.session["username"]
     try:
+        # Checks if course is given by instructor
         if (run_statement(f"""SELECT * FROM Course WHERE Course.`course_id` = "{course_id}" AND Course.`instr_username` = "{instr_username}"; """)):
             run_statement(f"""UPDATE Course
                             SET Course.`name` = "{updated_name}"
@@ -102,14 +103,18 @@ def action_updateCourseName(req):
     except Exception as e:
         return HttpResponseRedirect(f'../instructor/updateCourseName?fail={str(e)}')
 
+
+# This function gives grade to a student for a given course and grade. It checks the ownership of course and if the student is enrolled in the course
 def action_giveGrade(req):
     course_id=req.POST["course_id"]
     student_id=req.POST["student_id"]
     grade=req.POST["grade"]
     instr_username=req.session["username"]
     try:
+        # checks if course is given by the instructor
         if (run_statement(f"""SELECT * FROM Course WHERE Course.`course_id` = "{course_id}" AND Course.`instr_username` = "{instr_username}"; """)):
             
+            # Checking if the student is taking the course
             if (run_statement(f"""SELECT * FROM Taken 
                                 INNER JOIN Students ON Taken.`username` = Students.`username`
                                 WHERE Taken.`course_id` = "{course_id}" AND Students.`student_id`= {student_id};""")):

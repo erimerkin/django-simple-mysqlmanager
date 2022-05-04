@@ -4,6 +4,7 @@ from .forms import *
 from .utilities import *
 from django.shortcuts import redirect
 
+# This function handles login for students
 def action_login(req):
     #Retrieve data from the request body
     username=req.POST["username"]
@@ -17,6 +18,7 @@ def action_login(req):
     else:
         return HttpResponseRedirect('../student/login?fail=true')
 
+# This function adds a new course with given course_id to current student
 def action_addCourse(req):
     #Retrieve data from the request body
     course_id=req.POST["course_ID"]
@@ -28,6 +30,7 @@ def action_addCourse(req):
     except Exception as e:
         return HttpResponseRedirect(f'../student/addCourse?fail={str(e)}')
 
+# This function redirects the search text to view to search keywords in courses
 def action_searchCourses(req):
     #Retrieve data from the request body
     search_text=req.POST["search"]
@@ -38,6 +41,7 @@ def action_searchCourses(req):
         print(str(e))
         return HttpResponseRedirect(f'../student/searchCourses?fail={search_text}')
 
+# this function redirects the filter info to page view
 def action_filterCourses(req):
     department_id=req.POST["department_id"]
     campus=req.POST["campus"]

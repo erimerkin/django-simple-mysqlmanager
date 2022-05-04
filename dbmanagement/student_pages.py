@@ -4,6 +4,7 @@ from .forms import *
 from .utilities import *
 from django.shortcuts import redirect
 
+# Authentication Function
 def student_auth(req):
     if req.session:
         if "type" in req.session:
@@ -14,12 +15,14 @@ def student_auth(req):
     req.session.flush()
     return False
 
+# Home page
 def home(req):
     if student_auth(req):
         return render(req,'student/studentIndex.html')
     else:
         return HttpResponseRedirect("./student/login")
 
+# Login Page
 def page_login(req):
     if student_auth(req):
         return HttpResponseRedirect("../student")
@@ -30,7 +33,7 @@ def page_login(req):
 
         return render(req,'student/login.html', {"add_form":login_form, "action_fail":isFailed, "info_text":info_text})
 
-
+# Page that list all taken courses for the current student
 def page_listTakenCourses(req):
     if student_auth(req):
 
@@ -55,7 +58,7 @@ def page_listTakenCourses(req):
     else:
         return HttpResponseRedirect("../student/login")
 
-# DONE
+# Page to add a new course for a student
 def page_addCourse(req):
     if student_auth(req):
         
@@ -70,6 +73,7 @@ def page_addCourse(req):
     else:
         return HttpResponseRedirect("./login")
 
+# Page to search courses containing certain keywords in their name
 def page_searchCourses(req):
     if student_auth(req):
 
@@ -108,6 +112,7 @@ def page_searchCourses(req):
     else:
         return HttpResponseRedirect("./login")
 
+# page to list and filter courses
 def page_filterCourses(req):
     if student_auth(req):
         info_text = "Lists all active courses"

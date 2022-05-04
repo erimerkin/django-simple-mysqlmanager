@@ -110,7 +110,7 @@ def page_viewCoursesGiven(req):
     else:
         return HttpResponseRedirect("../instructor/login")
 
-# TODO: List Student taking a course page
+# List Student taking a course page
 def page_listStudentsForCourse(req):
     if instr_auth(req):
 
@@ -168,5 +168,3 @@ def page_listAllClassrooms(req):
         return render(req,'instructor/listClassrooms.html',{"results":result, "action_fail":isFailed, "add_form":add_form, "info_text":info_text, "headers":header_list, "username":isSuccess})
     else:
         return HttpResponseRedirect("./login")
-
-#TODO: HANDLE PREREQ TRIGGER ITS BROKEN

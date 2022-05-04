@@ -4,6 +4,7 @@ from .forms import *
 from .utilities import *
 from django.shortcuts import redirect
 
+# authenticate function
 def authenticate(req):
     if req.session:
         if "type" in req.session:
@@ -18,12 +19,14 @@ def authenticate(req):
 
 ##### STATIC PAGE VIEWS
 
+# Home page
 def home(req):
     if authenticate(req):
         return render(req,'manager/managerIndex.html')
     else:
         return HttpResponseRedirect("./manager/login")
 
+# Page to handle login
 def page_login(req):
     if authenticate(req):
         return HttpResponseRedirect("../manager")
@@ -34,7 +37,7 @@ def page_login(req):
 
         return render(req,'manager/login.html', {"add_form":login_form, "action_fail":isFailed, "info_text":info_text})
 
-# DONE
+# Page to list all students
 def page_listStudents(req):
     if authenticate(req):
 
@@ -49,7 +52,7 @@ def page_listStudents(req):
     else:
         return HttpResponseRedirect("../manager/login")
 
-# DONE
+# Page to list all instructors
 def page_listInstructors(req):
     if authenticate(req):
 
@@ -63,7 +66,7 @@ def page_listInstructors(req):
     else:
         return HttpResponseRedirect("../manager/login")
 
-# DONE
+# Page to update title of an existing instructor
 def page_updateTitle(req):
     if authenticate(req):
         
@@ -79,7 +82,7 @@ def page_updateTitle(req):
     else:
         return HttpResponseRedirect("./login")
 
-# Done
+# Page to remove a student
 def page_removeStudent(req):
     if authenticate(req):
 
@@ -96,7 +99,7 @@ def page_removeStudent(req):
     else:
         return HttpResponseRedirect("./login")
 
-#done
+# Page to add a new student
 def page_addStudent(req):
     if authenticate(req):
 
@@ -109,7 +112,7 @@ def page_addStudent(req):
     else:
         return HttpResponseRedirect("../manager/login")
 
-#done
+# Page to add a new instructor
 def page_addInstructor(req):
     if authenticate(req):
 
@@ -123,7 +126,7 @@ def page_addInstructor(req):
         return HttpResponseRedirect("./login")
 
 
-# DONE
+# Page to view courses of a given instructor
 def page_viewCourses(req):
     if authenticate(req):
 
@@ -148,7 +151,7 @@ def page_viewCourses(req):
     else:
         return HttpResponseRedirect("./login")
 
-# Done
+# Page to view grades of a given student
 def page_viewGrades(req):
     if authenticate(req):
 
@@ -172,8 +175,7 @@ def page_viewGrades(req):
         return HttpResponseRedirect("./login")
 
 
-    
-    
+# Page showing a given course's average
 def page_courseAverage(req):
     if authenticate(req):
 

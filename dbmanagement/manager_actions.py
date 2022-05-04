@@ -1,9 +1,9 @@
-from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseRedirect
 from .forms import *
 from .utilities import *
 from django.shortcuts import redirect
 
+# Function to handle login process
 def action_login(req):
     #Retrieve data from the request body
     username=req.POST["username"]
@@ -18,7 +18,7 @@ def action_login(req):
     else:
         return HttpResponseRedirect('../manager/login?fail=true')
 
-
+# Function that removes given student 
 def action_removeStudent(req):
     #Retrieve data from the request body
     studentId=req.POST["student_id"]
@@ -33,7 +33,7 @@ def action_removeStudent(req):
         print(str(e))
         return HttpResponseRedirect(f'../manager/removeStudent?fail={studentId}')
 
-# Done
+# Function that adds new students according to given info
 def action_addStudent(req):
     #Retrieve data from the request body
     studentId=req.POST["student_id"]
@@ -51,7 +51,7 @@ def action_addStudent(req):
     except Exception as e:
         return HttpResponseRedirect(f'../manager/addStudent?fail={str(e)}')
 
-#done
+# Function that adds new instructor according to given info
 def action_addInstructor(req):
     #Retrieve data from the request body
     title=req.POST["title"]
@@ -69,7 +69,7 @@ def action_addInstructor(req):
     except Exception as e:
         return HttpResponseRedirect(f'../manager/addInstructor?fail={str(e)}')
 
-# DONE
+# Function that activates and updates the title according to given info
 def action_updateTitle(req):
 
     #Retrieve data from the request body
@@ -88,7 +88,7 @@ def action_updateTitle(req):
         print(str(e))
         return HttpResponseRedirect(f'../manager/updateTitle?fail={username}')
 
-# DONE
+# Function that redirects the search text to view for listing average of a given course
 def action_courseAverage(req):
 #Retrieve data from the request body
     search_text=req.POST["search"]
@@ -103,7 +103,7 @@ def action_courseAverage(req):
           
 
 
-# DONE
+# Function that redirects the search text to view for viewing all courses of an instructor
 def action_viewCourses(req):
 
     #Retrieve data from the request body
@@ -115,10 +115,9 @@ def action_viewCourses(req):
         else:
             return HttpResponseRedirect(f'../manager/viewCourses?fail={search_text}')
     except Exception as e:
-        print(str(e))
         return HttpResponseRedirect(f'../manager/viewCourses?fail={search_text}')
     
-# Done
+# Function that redirects the search text to viewing all grades of a student
 def action_viewGrades(req):
 
     #Retrieve data from the request body
@@ -130,6 +129,5 @@ def action_viewGrades(req):
         else:
             return HttpResponseRedirect(f'../manager/viewGrades?fail={search_text}')
     except Exception as e:
-        print(str(e))
         return HttpResponseRedirect(f'../manager/viewGrades?fail={search_text}')
 
