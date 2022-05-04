@@ -37,10 +37,9 @@ def page_listTakenCourses(req):
         username = req.session["username"]
         info_text = "Lists all previously and currently taken courses for you."
 
-        result = run_statement(f"""SELECT Course.`course_id`, Course.`name`, Has_Grade.`grade` 
+        result = run_statement(f"""SELECT Course.`course_id`, Course.`name`, NULL 
                                     FROM Taken 
                                     INNER JOIN Course ON Course.`course_id` = Taken.`course_id`
-                                    LEFT JOIN Has_Grade ON Has_Grade.`course_id` = Taken.`course_id`
                                     WHERE `username` = "{username}"
                                     UNION
                                     SELECT Course.`course_id`, Course.`name`, Has_Grade.`grade` 
