@@ -15,20 +15,20 @@ connection = mysql.connector.connect(
 
 cursor = connection.cursor()
 
-# cursor.execute(f"""INSERT INTO `Classroom` (`classroom_id`, `campus`, `capacity`)
-# VALUES ('BMA2', 'North Campus', 200),
-#     ('BMA3', 'North Campus', 150),
-#     ('HD201', 'Hisar Campus', 300),
-#     ('M1171', 'South Campus', 100),
-#     ('TB310', 'South Campus', 100);""")
+cursor.execute(f"""INSERT INTO `Classroom` (`classroom_id`, `campus`, `capacity`)
+VALUES ('BMA2', 'North Campus', 200),
+    ('BMA3', 'North Campus', 150),
+    ('HD201', 'Hisar Campus', 300),
+    ('M1171', 'South Campus', 100),
+    ('TB310', 'South Campus', 100);""")
 
-# cursor.execute(f"""INSERT INTO `Department` (`department_id`, `name`)
-# VALUES ('CMPE', 'Computer Engineering'),
-#     ('IE', 'Industrial Engineering'),
-#     ('MATH', 'Mathematics'),
-#     ('PHIL', 'Philosophy');""")
+cursor.execute(f"""INSERT INTO `Department` (`department_id`, `name`)
+VALUES ('CMPE', 'Computer Engineering'),
+    ('IE', 'Industrial Engineering'),
+    ('MATH', 'Mathematics'),
+    ('PHIL', 'Philosophy');""")
 
-# connection.commit()
+connection.commit()
 
 cursor.execute(f"""INSERT INTO `Students` (`username`, `name`, `surname`, `email`, `password`, `department_id`, `student_id`)
 VALUES
@@ -53,12 +53,12 @@ VALUES
 	('sevgi.demir','Sevgi','Demirbilek','sevgi.demir1@simpleboun.edu.tr','{encrypt_password("dmrblk1234")}','MATH','Professor'),
 	('simon.hunt','Simon','Hunt','hunt.simon@simpleboun.edu.tr','{encrypt_password("123abc")}','PHIL','Professor');""")
 
-# cursor.execute(f"""INSERT INTO `DBManager` (`username`, `password`)
-# VALUES
-# 	('manager1','{encrypt_password("managerpass1")}'),
-# 	('manager2','{encrypt_password("managerpass2")}'),
-# 	('manager35','{encrypt_password("managerpass35")}'),
-# 	('erkin','{encrypt_password("erkin")}'),
-# 	('omer','{encrypt_password("omer")}');""")
+cursor.execute(f"""INSERT INTO `DBManager` (`username`, `password`)
+VALUES
+	('manager1','{encrypt_password("managerpass1")}'),
+	('manager2','{encrypt_password("managerpass2")}'),
+	('manager35','{encrypt_password("managerpass35")}'),
+	('erkin','{encrypt_password("erkin")}'),
+	('omer','{encrypt_password("omer")}');""")
 
 connection.commit()

@@ -129,12 +129,12 @@ CREATE TRIGGER `StudentAutomator` AFTER INSERT ON `Has_Grade`
 FOR EACH ROW 
 BEGIN
     UPDATE Students
-    SET Students.credits = Students.credits + 
-        (SELECT `credits` FROM Course WHERE Course.`course_id` = NEW.course_id),
-
-        Students.GPA = (SELECT SUM(Course.`credits` * `grade`) FROM Has_Grade
-                    INNER JOIN Course ON Has_Grade.`course_id` = Course.`course_id`
-                    WHERE `student_username` = Students.`username`) / Students.`credits`
+    SET Students.credits = (SELECT SUM(`credits`) FROM Course
+                    INNER JOIN Has_Grade ON Course.`course_id` = Has_Grade.`course_id`
+                    WHERE NEW.`student_username` = Has_Grade.`student_username`),
+    Students.GPA = (SELECT SUM(Course.`credits` * `grade`) FROM Has_Grade
+                INNER JOIN Course ON Has_Grade.`course_id` = Course.`course_id`
+                WHERE `student_username` = Students.`username`) / Students.`credits`
     WHERE Students.username = NEW.student_username;
 END;;
 
