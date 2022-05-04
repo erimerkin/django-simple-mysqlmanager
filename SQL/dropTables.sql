@@ -1,0 +1,10 @@
+DROP TABLE IF EXISTS Has_Grade, 
+Has_Prerequisite, 
+Given_At, 
+Taken, 
+Classroom, 
+Course, 
+Students, 
+Instructors, 
+Department, 
+DBManager CASCADE;

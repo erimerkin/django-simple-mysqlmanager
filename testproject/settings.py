@@ -90,11 +90,11 @@ WSGI_APPLICATION = 'testproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'SimpleBoun',
-        'USER': 'django',
-        'PASSWORD': 'c3tg2RB8QzN^zn',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'NAME': env("MYSQL_DB"),
+        'USER': env("MYSQL_USER"),
+        'PASSWORD': env("MYSQL_PASSWORD"),
+        'HOST': env("MYSQL_HOST"),
+        'PORT': env("MYSQL_PORT"),
     }
 }
 
