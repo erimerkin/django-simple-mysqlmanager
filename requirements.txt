@@ -1,4 +1,4 @@
-Django==4.0.4
+Django==4.1.13
 mysql_connector_python
 mysqlclient
 django-crispy-forms
